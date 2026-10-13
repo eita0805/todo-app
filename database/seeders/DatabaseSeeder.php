@@ -2,23 +2,33 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Task;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class TaskSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
-     *
-     * @return void
+     * 動作確認用のダミーデータを登録する
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $names = [
+            '牛乳を買う',
+            '洗濯物をたたむ',
+            'Laravelの課題を進める',
+            '部屋を掃除する',
+        ];
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        foreach ($names as $name) {
+            Task::create([
+                'name'   => $name,
+                'status' => false,
+            ]);
+        }
+
+        Task::create([
+            'name'   => 'ゴミを出す（完了済みの例）',
+            'status' => true,
+        ]);
     }
 }
